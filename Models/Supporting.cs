@@ -4,12 +4,8 @@ namespace staff
 {
     class Supporting: Staff
     {
-         
-        public string Superior    
-        {get;set;}
-        public string Field
-        {get;set;}
-
+        public string Superior {get;set;}
+        public string Field {get;set;}
         public override void Register()
         {
             base.Register();
@@ -24,6 +20,14 @@ namespace staff
             Console.WriteLine($"Staff type: Supporting staff");
             Console.WriteLine($"Name of superior: {Superior}");
             Console.WriteLine($"Supporting field: {Field}");
+        }
+        public override void Update()
+        {
+            base.Update();
+            Console.WriteLine("Enter the new Name of your superior");
+            Superior = Console.ReadLine();
+            Console.WriteLine("Enter the new Supporting field");
+            Field = Console.ReadLine();
         }
     }
 }
