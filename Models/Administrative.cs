@@ -6,9 +6,9 @@ namespace staff
     {         
         public string AdminNo {get;set;}
         public string AdmDprt {get;set;}
-        public override void Register()
+        public override void Register(int empId)
         {
-            base.Register();
+            base.Register(empId);
             Console.WriteLine("Enter the admin no.");
             AdmDprt = Console.ReadLine();
             Console.WriteLine("Enter the adminstrating Department");

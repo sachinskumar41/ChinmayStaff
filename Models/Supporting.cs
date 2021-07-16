@@ -6,9 +6,9 @@ namespace staff
     {
         public string Superior {get;set;}
         public string Field {get;set;}
-        public override void Register()
+        public override void Register(int empId)
         {
-            base.Register();
+            base.Register(empId);
             Console.WriteLine("Enter the Name of your superior");
             Superior = Console.ReadLine();
             Console.WriteLine("Enter the Supporting field");

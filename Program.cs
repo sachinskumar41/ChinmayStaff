@@ -4,70 +4,56 @@ using System.Collections.Generic;
 namespace staff
 {
     class Program
-    {
-        public static Staff staff;
-        public static int EmpId {get;set;}
+    {    
         static void Main(string[] args)
         {   
             string continueOption;
-            int userChoice;         
+            int userChoice;   
+            Staff staff = null;      
             do
             {   
-                MenuActinos menuActions = new MenuActinos();
                 Console.WriteLine("Select your job type \n1.Teaching staff\n2.Admin. staff\n3.Supporting Staff");
                 userChoice = Convert.ToInt32(Console.ReadLine());
                 switch(userChoice) 
                 {
                     case 1:
-                        menuActions.StaffType = "Teaching";
+                        staff = new Teaching();
                         break;
                     case 2:
-                        menuActions.StaffType = "Administrative";
+                        staff = new Administrative();
                         break;
                     case 3:
-                        menuActions.StaffType = "Supporting";    
+                        staff = new Supporting();
                         break;
                     default:
                         Console.WriteLine("SELECT A VALID OPTION");
                         break;
                 }
-                ActionMenu(menuActions);
+                ActionMenu(staff);
                 Console.WriteLine("Do you want to continue in main menu?(y/n)");
                 continueOption = Console.ReadLine();                                  
             }while (continueOption == "y");
         }
 
-        public static void ActionMenu(MenuActinos menuActions)
+        public static void ActionMenu(Staff staff)
         {   
+            MenuActinos menuActions = new MenuActinos();
             string continueOption;
             int userChoice;
             do
             {
-            Console.WriteLine("\nSelect your Action \n1.Add a staff\n2.Display a staff\n3.Upadate a staff\n4.Delete a staff.");
+            Console.WriteLine("\nSelect your Action \n1.Add a staff\n2.Display a staff\n3.Upadate a staff\n");
             userChoice = Convert.ToInt32(Console.ReadLine());
             switch(userChoice) 
                 {
                 case 1:      
-                    EmpId++;
-                    staff = menuActions.AddStaff(EmpId);
+                    menuActions.AddStaff(staff,1);
                     break;
                 case 2:
                     menuActions.DisplayAStaff(staff);
                     break;
                 case 3:
                     menuActions.UpdateAStaff(staff);           
-                    break;
-                case 4:
-                    if(staff!= null)
-                    {
-                        staff = null;
-                        GC.Collect();
-                        Console.WriteLine("Deleted succesfully...");
-                    }
-                    else
-                    {
-                        Console.WriteLine("There is no staff to delete");
-                    }    
                     break;
                 default:
                     Console.WriteLine("SELECT A VALID OPTION");

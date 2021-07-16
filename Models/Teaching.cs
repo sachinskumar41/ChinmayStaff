@@ -6,9 +6,9 @@ namespace staff
     { 
         public string Subject {get;set;}
         public int NoOfHrs {get;set;}
-        public override void Register()
+        public override void Register(int empId)
         {
-            base.Register();
+            base.Register(empId);
             Console.WriteLine("Enter the subject that u teach");
             Subject = Console.ReadLine();
             Console.WriteLine("Enter the no. of teaching Hours that u have in a week");
