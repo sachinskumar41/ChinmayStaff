@@ -5,95 +5,64 @@ namespace staff
 {
     class MenuActinos
     {
-        public void AddStaff(List<dynamic> staffList,int empId)
+        public string StaffType {get;set;}
+        public Staff AddStaff(int empId)
         {
             Console.WriteLine("----EMPLOYEE ENROLLING---");
-            Console.WriteLine("Select your job type \n1.Teaching staff\n2.Admin. staff\n3.Supporting Staff");
-            int userChoice = Convert.ToInt32(Console.ReadLine());
-            switch(userChoice) 
+            dynamic staff = 0;
+            
+            switch(StaffType) 
             {
-                case 1:
+                case "Teaching":
                     Teaching teachObj = new Teaching();
                     teachObj.EmpId = empId;
                     teachObj.Register();
-                    staffList.Add(teachObj);
+                    staff = teachObj;
                     break;
-                case 2:
+                case "Administrative":
                     Administrative adminObj = new Administrative();
                     adminObj.EmpId = empId;
                     adminObj.Register();
-                    staffList.Add(adminObj); 
+                    staff = adminObj;
                     break;
-                case 3:
+                case "Supporting":
                     Supporting sprtObject = new Supporting();
                     sprtObject.EmpId = empId;
                     sprtObject.Register();
-                    staffList.Add(sprtObject);
+                    staff = sprtObject;
                     break;
                 default:
                     Console.WriteLine("SELECT A VALID OPTION");
                     break;
             }
+            Console.WriteLine("Staff successfully added..");
+            return staff;
         }
 
-        public void DisplayAllStaffs(List<dynamic> staffList)
-        {   
-            foreach (dynamic staff in staffList)  
-            {  
-                staff.Display();
-            }  
-        }
-        public void DisplayAstaff(List<dynamic> staffList)
-        {  
-            int selectedUser = ShowStaffList(staffList);  
-            try 
-            {
-                staffList[selectedUser - 1].Display();
-            }
-            catch(ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine("Exception caught: {0}", e);
-            }
-        }
-
-        public void UpdateAStaff(List<dynamic> staffList)
+        public void UpdateAStaff(Staff staff)
         {                    
-            int selectedUser = ShowStaffList(staffList);  
             try 
             {
-                staffList[selectedUser - 1].Update();
+                staff.Update();
+                 Console.WriteLine("Updated succesfully...");
             }
-            catch(ArgumentOutOfRangeException e)
+            catch(System.NullReferenceException e)
             {
-                Console.WriteLine("Exception caught: {0}", e);
+                Console.WriteLine("There is no staff to update:",e);
             }    
         }
-        public void DeleteAStaff(List<dynamic> staffList)
+        public void DisplayAStaff(Staff staff)
         {
-            int selectedUser = ShowStaffList(staffList);
-             try 
+            try 
             {
-                staffList.RemoveAt(selectedUser-1);
+                staff.Display();
             }
-            catch(ArgumentOutOfRangeException e)
+            catch(System.NullReferenceException e)
             {
-                Console.WriteLine("Exception caught: {0}", e);
+                Console.WriteLine("There is no staff to display:",e);
             }    
 
         }
-
-        public int ShowStaffList(List<dynamic> staffList)
-        {
-            int selectedUser;
-            int i = 1;
-            Console.WriteLine("Selecte the Staff");
-            foreach (dynamic staff in staffList)  
-            {  
-                Console.WriteLine($"{i}. {staff.Name}");
-                i++;
-            }
-            selectedUser = Convert.ToInt32(Console.ReadLine());
-            return selectedUser;
-        }
+        
     }
 }
