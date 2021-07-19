@@ -16,18 +16,40 @@ namespace staff
         }
         public override void Display()
         {   
-            base.Display();
-            Console.WriteLine($"Staff type: Supporting staff");
-            Console.WriteLine($"Name of superior: {Superior}");
-            Console.WriteLine($"Supporting field: {Field}");
+            TableDispaly tableDisplayObj = new TableDispaly();
+            tableDisplayObj.PrintLine();
+            tableDisplayObj.PrintRow("Name", "EmpId","Staff Type","Salary", "Superior","Supporting field");
+            tableDisplayObj.PrintLine();
+            tableDisplayObj.PrintRow(Name, $"{EmpId}","Supporting", $"{Salary}", Superior,Field);
+            tableDisplayObj.PrintLine();
+            Console.WriteLine();
         }
         public override void Update()
         {
-            base.Update();
-            Console.WriteLine("Enter the new Name of your superior");
-            Superior = Console.ReadLine();
-            Console.WriteLine("Enter the new Supporting field");
-            Field = Console.ReadLine();
+            Console.WriteLine("select the atribute that you want to change\n1.name\n2.salary\n3.Name of superior\n4.Supporting field");
+            int userChoice = Convert.ToInt32(Console.ReadLine());
+            switch(userChoice)
+            {
+                case 1:
+                    Console.WriteLine("\n\nEnter the new name");
+                    Name = Console.ReadLine();
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the new Salary");
+                    Salary = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 3:
+                    Console.WriteLine("Enter the new superior");
+                    Console.ReadLine();
+                    break; 
+                case 4:
+                    Console.WriteLine("Enter the new Supporting field");
+                    Console.ReadLine();
+                    break;
+                default:
+                    Console.WriteLine("select a valid opyion");     
+                    break;             
+            }
         }
     }
 }

@@ -5,21 +5,40 @@ namespace staff
 {    
     class MenuActinos
     {   
-        public int EmpId = 0;
-        public void AddStaff(Staff staff,int empId, List<Staff> staffList)
+        public void AddStaff(int empId, List<Staff> staffList)
         {
+            Staff staff =null; 
             Console.WriteLine("----EMPLOYEE ENROLLING---");
+            Console.WriteLine("Select your job type \n1.Teaching staff\n2.Admin. staff\n3.Supporting Staff");
+            int userChoice = Convert.ToInt32(Console.ReadLine());
+            switch(userChoice) 
+            {
+                case 1:
+                    staff = new Teaching();
+                    break;
+                case 2:
+                    staff = new Administrative();
+                    break;
+                case 3:
+                    staff = new Supporting();
+                    break;
+                default:
+                    Console.WriteLine("SELECT A VALID OPTION");
+                    break;
+            }         
             staff.Register(empId);
             Console.WriteLine("Staff successfully added..");
             staffList.Add(staff);
         }
 
         public void DisplayAstaff(List<Staff> staffList)
-        {  
-            int selectedUser = ShowStaffList(staffList);  
+        {   
+            Console.WriteLine("----EMPLOYEE DETAILS---");
+            MenuActinoHelper menuActionsHelperObj = new MenuActinoHelper();
+            int selectedUser =  menuActionsHelperObj.ShowStaffList(staffList);  
             try 
             {
-                staffList[selectedUser - 1].Display();
+                staffList[selectedUser].Display();
             }
             catch(ArgumentOutOfRangeException e)
             {
@@ -29,10 +48,13 @@ namespace staff
 
         public void UpdateAStaff(List<Staff> staffList)
         {                    
-            int selectedUser = ShowStaffList(staffList);  
+            MenuActinoHelper menuActionsHelperObj = new MenuActinoHelper();
+            int selectedUser =  menuActionsHelperObj.ShowStaffList(staffList); 
             try 
             {
-                staffList[selectedUser - 1].Update();
+                staffList[selectedUser].Update();
+                Console.WriteLine("----SUCCESSFULLY UPADATED----");
+                
             }
             catch(ArgumentOutOfRangeException e)
             {
@@ -42,6 +64,7 @@ namespace staff
 
         public void DisplayAllStaffs(List<Staff> staffList)
             {   
+                Console.WriteLine("----EMPLOYEE DETAILS---");
                 foreach (Staff staff in staffList)  
                 {  
                     staff.Display();
@@ -50,31 +73,19 @@ namespace staff
 
         public void DeleteAStaff(List<Staff> staffList)
         {
-            int selectedUser = ShowStaffList(staffList);
+            MenuActinoHelper menuActionsHelperObj = new MenuActinoHelper();
+            int selectedUser =  menuActionsHelperObj.ShowStaffList(staffList);
              try 
             {
-                staffList[selectedUser-1] = null;
-                staffList.RemoveAt(selectedUser-1);
+                staffList[selectedUser] = null;
+                staffList.RemoveAt(selectedUser);
                 GC.Collect();                
+                Console.WriteLine("----SUCCESSFULLY DELETED----");
             }
             catch(ArgumentOutOfRangeException e)
             {
                 Console.WriteLine("Exception caught: {0}", e);
             }    
         }   
-
-        public int ShowStaffList(List<Staff> staffList)
-        {
-            int selectedUser;
-            int i = 1;
-            Console.WriteLine("Selecte the Staff");
-            foreach (Staff staff in staffList)  
-            {  
-                Console.WriteLine($"{i}. {staff.Name}");
-                i++;
-            }
-            selectedUser = Convert.ToInt32(Console.ReadLine());
-            return selectedUser;
-        }           
     }
 }

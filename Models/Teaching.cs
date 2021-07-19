@@ -15,19 +15,41 @@ namespace staff
             NoOfHrs = Convert.ToInt32(Console.ReadLine());
         }
         public override void Display()
-        {   
-            base.Display();
-            Console.WriteLine($"Staff type: Teaching staff");
-            Console.WriteLine($"Teaching subject: {Subject}");
-            Console.WriteLine($"No. of teaching hours in a week: {NoOfHrs} Hrs.");
+        {              
+            TableDispaly tableDisplayObj = new TableDispaly();
+            tableDisplayObj.PrintLine();
+            tableDisplayObj.PrintRow("Name", "EmpId","Staff Type","Salary", "Subject","Teching hrs");
+            tableDisplayObj.PrintLine();
+            tableDisplayObj.PrintRow(Name, $"{EmpId}","Teching", $"{Salary}", Subject,$"{NoOfHrs}");
+            tableDisplayObj.PrintLine();
+            Console.WriteLine();
         }
         public override void Update()
         {
-            base.Update();
-            Console.WriteLine("Enter the new subject that u teach");
-            Subject = Console.ReadLine();
-            Console.WriteLine("Enter the new no. of teaching Hours that u have in a week");
-            NoOfHrs = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("select the atribute that you want to change\n1.name\n2.salary\n3.Teaching subject\n4.No. of teaching hours in a week");
+            int userChoice = Convert.ToInt32(Console.ReadLine());
+            switch(userChoice)
+            {
+                case 1:
+                    Console.WriteLine("\n\nEnter the new name");
+                    Name = Console.ReadLine();
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the new Salary");
+                    Salary = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 3:
+                    Console.WriteLine("Enter the new subject");
+                    Subject = Console.ReadLine();
+                    break; 
+                case 4:
+                    Console.WriteLine("Enter the time");
+                    NoOfHrs = Convert.ToInt32(Console.ReadLine());
+                    break;
+                default:
+                    Console.WriteLine("select a valid opyion");     
+                    break;             
+            }
             
         }
     }
