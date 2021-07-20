@@ -5,7 +5,7 @@ namespace staff
 {    
     class MenuActinos
     {   
-        public void AddStaff(int empId, List<Staff> staffList)
+        public static Staff  AddStaff(int empId)
         {
             Staff staff =null; 
             Console.WriteLine("----EMPLOYEE ENROLLING---");
@@ -28,14 +28,13 @@ namespace staff
             }         
             staff.Register(empId);
             Console.WriteLine("Staff successfully added..");
-            staffList.Add(staff);
+            return staff;
         }
 
-        public void DisplayAstaff(List<Staff> staffList)
+        public static void  DisplayAstaff(List<Staff> staffList)
         {   
             Console.WriteLine("----EMPLOYEE DETAILS---");
-            MenuActinoHelper menuActionsHelperObj = new MenuActinoHelper();
-            int selectedUser =  menuActionsHelperObj.ShowStaffList(staffList);  
+            int selectedUser =  MenuActinoHelper.ShowStaffList(staffList);  
             try 
             {
                 staffList[selectedUser].Display();
@@ -46,10 +45,9 @@ namespace staff
             }
         }
 
-        public void UpdateAStaff(List<Staff> staffList)
+        public static void  UpdateAStaff(List<Staff> staffList)
         {                    
-            MenuActinoHelper menuActionsHelperObj = new MenuActinoHelper();
-            int selectedUser =  menuActionsHelperObj.ShowStaffList(staffList); 
+            int selectedUser =  MenuActinoHelper.ShowStaffList(staffList); 
             try 
             {
                 staffList[selectedUser].Update();
@@ -62,7 +60,7 @@ namespace staff
             }    
         }
 
-        public void DisplayAllStaffs(List<Staff> staffList)
+        public static void DisplayAllStaffs(List<Staff> staffList)
             {   
                 Console.WriteLine("----EMPLOYEE DETAILS---");
                 foreach (Staff staff in staffList)  
@@ -71,10 +69,9 @@ namespace staff
                 }  
             }
 
-        public void DeleteAStaff(List<Staff> staffList)
+        public static void  DeleteAStaff(List<Staff> staffList)
         {
-            MenuActinoHelper menuActionsHelperObj = new MenuActinoHelper();
-            int selectedUser =  menuActionsHelperObj.ShowStaffList(staffList);
+            int selectedUser =  MenuActinoHelper.ShowStaffList(staffList);
              try 
             {
                 staffList[selectedUser] = null;

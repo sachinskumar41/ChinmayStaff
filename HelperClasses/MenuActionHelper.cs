@@ -4,7 +4,7 @@ namespace staff
 {
     class MenuActinoHelper
     {
-        public int ShowStaffList(List<Staff> staffList)
+        public static int ShowStaffList(List<Staff> staffList)
         {
             int selectedUser;
             int i = 1;

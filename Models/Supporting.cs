@@ -16,12 +16,12 @@ namespace staff
         }
         public override void Display()
         {   
-            TableDispaly tableDisplayObj = new TableDispaly();
-            tableDisplayObj.PrintLine();
-            tableDisplayObj.PrintRow("Name", "EmpId","Staff Type","Salary", "Superior","Supporting field");
-            tableDisplayObj.PrintLine();
-            tableDisplayObj.PrintRow(Name, $"{EmpId}","Supporting", $"{Salary}", Superior,Field);
-            tableDisplayObj.PrintLine();
+            
+           TableDisplay.PrintLine();
+           TableDisplay.PrintRow("Name", "EmpId","Staff Type","Salary", "Superior","Supporting field");
+           TableDisplay.PrintLine();
+           TableDisplay.PrintRow(Name, $"{EmpId}","Supporting", $"{Salary}", Superior,Field);
+           TableDisplay.PrintLine();
             Console.WriteLine();
         }
         public override void Update()

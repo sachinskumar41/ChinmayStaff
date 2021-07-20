@@ -1,5 +1,4 @@
 using System;
-
 namespace staff
 {
     class Administrative: Staff
@@ -18,12 +17,11 @@ namespace staff
 
         public override void Display()
         {   
-            TableDispaly tableDisplayObj = new TableDispaly();
-            tableDisplayObj.PrintLine();
-            tableDisplayObj.PrintRow("Name", "EmpId","Staff Type","Salary", "Admin. No.","Adminisrating Dprtmnt.");
-            tableDisplayObj.PrintLine();
-            tableDisplayObj.PrintRow(Name, $"{EmpId}","Administrative", $"{Salary}", AdminNo,AdmDprt);
-            tableDisplayObj.PrintLine();
+            TableDisplay.PrintLine();
+            TableDisplay.PrintRow("Name", "EmpId","Staff Type","Salary", "Admin. No.","Adminisrating Dprtmnt.");
+            TableDisplay.PrintLine();
+            TableDisplay.PrintRow(Name, $"{EmpId}","Administrative", $"{Salary}", AdminNo,AdmDprt);
+            TableDisplay.PrintLine();
             Console.WriteLine();
         }
 

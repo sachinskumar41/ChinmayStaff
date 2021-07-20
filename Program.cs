@@ -8,8 +8,8 @@ namespace staff
         public static int empId;
         static void Main(string[] args)
         {   
+            Staff staff = null;
             List<Staff> staffList = new List<Staff>();
-            MenuActinos menuActions = new MenuActinos();
             string continueOption;
             int userChoice;   
             do
@@ -20,19 +20,20 @@ namespace staff
                     {
                     case 1:    
                         empId++;  
-                        menuActions.AddStaff(empId,staffList);
+                        staff = MenuActinos.AddStaff(empId);
+                        staffList.Add(staff);
                         break;
                     case 2:
-                        menuActions.DisplayAstaff(staffList);
+                        MenuActinos.DisplayAstaff(staffList);
                         break;
                     case 3:
-                        menuActions.DisplayAllStaffs(staffList);    
+                        MenuActinos.DisplayAllStaffs(staffList);    
                         break;
                     case 4:
-                        menuActions.UpdateAStaff(staffList);
+                        MenuActinos.UpdateAStaff(staffList);
                         break;  
                     case 5:
-                        menuActions.DeleteAStaff(staffList);
+                        MenuActinos.DeleteAStaff(staffList);
                         break;      
                     default:
                         Console.WriteLine("SELECT A VALID OPTION");

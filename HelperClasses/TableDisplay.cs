@@ -3,14 +3,14 @@ using System;
 
 namespace staff
 {
-    class TableDispaly
+    class TableDisplay
     {
         static int tableWidth = 73;
-        public  void PrintLine()
+        public static void PrintLine()
         {
             Console.WriteLine(new string('-', tableWidth));
         }
-        public  void PrintRow(params string[] columns)
+        public static  void PrintRow(params string[] columns)
         {
             int width = (tableWidth - columns.Length) / columns.Length;
             string row = "|";
@@ -21,7 +21,7 @@ namespace staff
             }
             Console.WriteLine(row);
         }
-        public  string AlignCentre(string text, int width)
+        public static string AlignCentre(string text, int width)
         {
             text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
 
