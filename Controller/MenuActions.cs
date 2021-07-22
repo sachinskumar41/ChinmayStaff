@@ -11,22 +11,7 @@ namespace staff
             Console.WriteLine("----EMPLOYEE ENROLLING---");
             Console.WriteLine("Select your job type \n1.Teaching staff\n2.Admin. staff\n3.Supporting Staff");
             int userChoice = Convert.ToInt32(Console.ReadLine());
-            switch(userChoice) 
-            {
-                case 1:
-                    staff = new Teaching();
-                    break;
-                case 2:
-                    staff = new Administrative();
-                    break;
-                case 3:
-                    staff = new Supporting();
-                    break;
-                default:
-                    Console.WriteLine("SELECT A VALID OPTION");
-                    break;
-            }         
-            staff.Register(empId);
+            staff = StaffRegister.Register(userChoice,empId);
             Console.WriteLine("Staff successfully added..");
             return staff;
         }
@@ -37,7 +22,7 @@ namespace staff
             int selectedUser =  MenuActinoHelper.ShowStaffList(staffList);  
             try 
             {
-                staffList[selectedUser].Display();
+             StaffDisplay.Display(staffList[selectedUser]);
             }
             catch(ArgumentOutOfRangeException e)
             {
@@ -50,9 +35,8 @@ namespace staff
             int selectedUser =  MenuActinoHelper.ShowStaffList(staffList); 
             try 
             {
-                staffList[selectedUser].Update();
-                Console.WriteLine("----SUCCESSFULLY UPADATED----");
-                
+                StaffUpdate.Update(staffList[selectedUser]);
+                Console.WriteLine("----SUCCESSFULLY UPADATED----");       
             }
             catch(ArgumentOutOfRangeException e)
             {
@@ -65,7 +49,7 @@ namespace staff
                 Console.WriteLine("----EMPLOYEE DETAILS---");
                 foreach (Staff staff in staffList)  
                 {  
-                    staff.Display();
+                    StaffDisplay.Display(staff);
                 }  
             }
 
